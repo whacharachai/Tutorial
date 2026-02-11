@@ -1,0 +1,20 @@
+<html>
+    <title>Test Script</title>
+    
+    <button id = "B1" onclick ="document.getElementById('demo').innerHTML = 'Press Button 1';">Button 1</button>
+    <button id = "B2">Button 2</button>
+    <button id = "B3">Button 3</button>
+
+    <div id="demo"></div>
+    
+    <script>
+      document.getElementById("B2").onclick = function() {
+        document.getElementById("demo").innerHTML = "Press Button 2";
+      }
+    </script>
+
+    <script src="./js/TestScript.js"></script>
+
+</html>
+
+

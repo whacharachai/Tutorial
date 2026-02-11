@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+     // Create an Object
+     const person = {
+       firstName : "John",
+       lastName : "Doe"
+     };
+     console.table(person);//(2) {firstName: "John", lastName: "Doe"}
+
+     // Add Properties
+     person.age = 50;
+     person.eyeColor = "blue";
+     console.table(person);//(4) {firstName: "John", lastName: "Doe", age: 50, eyeColor: "blue"}
+
+     person.hi = function() { 
+       return "Hello World!"; 
+     };
+
+     console.log(person.firstName);//John
+     console.log(person["lastName"]);//Doe
+     console.log(person.hi());//Hello World!
+   </script> 
+</body>
+</html>

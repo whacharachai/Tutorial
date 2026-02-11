@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Tracker</title>
+  <style>
+    #trackingArea {
+      width: 400px;
+      height: 250px;
+      border: 2px dashed #333;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <button id="Start1" onclick="startEvent1()">Start 1</button>
+    <button id="Stop2" onclick="stopEvent1()">Stop 1</button>
+    <button id="Start2" onclick="startEvent2()">Start 2</button>
+    
+    <div id="mouseposition">Mouse Position: X=0, Y=0</div>
+    <div id="status"></div>
+    <select id="select1" size="1" style="width:250px;"></select>
+
+    <div id="trackingArea">Move mouse here</div>
+  </div>
+
+  <script>
+    let p1=0;
+
+    const select1 = document.getElementById("select1");
+    const mouseposition = document.getElementById("mouseposition");
+    const trackingArea = document.getElementById("trackingArea");
+    const status = document.getElementById("status");
+
+    function showmouseposition(event) {
+      mouseposition.innerHTML =
+        `Mouse Position: X=${event.offsetX}, Y=${event.offsetY}`;
+    }
+
+    function addmouseposition(event) {
+      let option = document.createElement("option");
+      option.text = `X=${event.offsetX}, Y=${event.offsetY}`;
+      select1.add(option);
+      select1.size = select1.options.length; // auto expand list
+    }
+
+    function showlength(event) {
+      if (p1 != 0) {
+          p2 = Math.sqrt(Math.pow((event.offsetX - 0), 2) + Math.pow((event.offsetY), 2));
+          mouseposition.innerHTML = `Length: ${Math.round(p2)} px`;        
+      }
+    }   
+
+    function controlclick(event) {
+      if (p1 == 0) {
+        p1 = 1;
+        status.innerHTML = "Length measurement started click to stop";
+      } else {
+        stopEvent2();
+        p1 = 0;
+        status.innerHTML = "";
+      }
+    }
+
+    function startEvent1() {
+      trackingArea.addEventListener("mousemove", showmouseposition);
+      trackingArea.addEventListener("click", addmouseposition);
+    }
+
+    function stopEvent1() {
+      trackingArea.removeEventListener("mousemove", showmouseposition);
+      trackingArea.removeEventListener("click", addmouseposition);
+    }
+
+    function startEvent2() {
+      trackingArea.addEventListener("mousemove", showlength);
+      trackingArea.addEventListener("click", controlclick);
+      status.innerHTML = "Click to start/stop length measurement";
+    }
+
+    function stopEvent2() {
+      trackingArea.removeEventListener("mousemove", showlength);
+      trackingArea.removeEventListener("click", controlclick);
+    }
+  </script>
+</body>
+</html>

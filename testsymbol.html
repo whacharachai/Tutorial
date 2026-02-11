@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+      a = Symbol('a');
+      b = Symbol('a');
+      c = 1;
+      console.log(`a=${a.toString()}`);//Symbol('a')
+      console.log(`b=${b.toString()}`);//Symbol('a')
+      console.log(`c=${c.toString()}`);//1
+      console.log(a === b);//false
+   </script> 
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <title>Forth</title>
+
+  <!-- Cesium -->
+  <script src="./CesiumUnminified/Cesium.js"></script>
+  <link href="./Cesium/Widgets/widgets.css" rel="stylesheet" />
+  
+  <!-- jQuery -->
+  <script src="./js/jquery-3.7.1.min.js"></script>
+
+  <!-- Bootstrap -->
+  <link href="./css/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<body>
+  <div id="cesiumContainer">
+    <div id="toolbar" 
+       style="position:absolute;
+              top:0px;
+              left:5px;
+              margin:10px;
+              width: 500px;
+              background:rgba(0,0,0,0.6);
+              color:#fff;
+              padding:8px 16px;
+              border-radius:8px;
+              display:block;
+              z-index:1000;">
+      <button onclick="pickCoordinate()">Pick a Point</button>
+    </div>
+    
+    <div id="Msg" 
+     style="position:absolute;
+            top:20px;
+            left:50%;
+            transform:translateX(-50%);
+            background:rgba(0,0,0,0.6);
+            color:#fff;
+            padding:8px 16px;
+            border-radius:8px;
+            display:none;
+            z-index:2000;">
+    </div>
+  </div>
+  <!-- <input type="file" id="cameraFile"  /> -->
+
+  <!-- Application -->
+  <script src="./js/script4.js"></script>
+  
+  <link href="./css/style.css" rel="stylesheet">
+  <link href="./css/toolbar-button.css" rel="stylesheet">
+</body>
+</html>

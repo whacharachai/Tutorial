@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+    const person = ["John", "Doe", 50, true];
+    console.table(person);//(4) ["John", "Doe", 50, true]
+
+    // Create an Array
+    const cars = ["Saab", "Volvo", "BMW"];
+    console.table(cars);//(3) ["Saab", "Volvo", "BMW"]
+    
+    // Sort Array
+    console.table(cars.sort());//(3) ["BMW", "Saab", "Volvo"]
+
+    //change element
+    cars[1] = "Mercedes";
+    console.table(cars);//(3) ["Saab", "Mercedes", "BMW"]
+
+    // Splice Array
+    cars.splice(2, 0, "Audi", "Renault");
+    console.table(cars);//(5) ["Saab", "Mercedes", "Audi", "Renault", "BMW"]
+
+    cars.splice(0, 1);
+    console.table(cars);//(4) ["Mercedes", "Audi", "Renault", "BMW"]
+
+    console.log(cars[0]);//Mercedes
+    console.log(cars.sort()[0]);//Audi
+    console.log(cars.length);//4
+
+    
+    const mixed = ["test", person];
+    console.table(mixed);//(2) ["test", Array(4)]
+    console.log(mixed[1][0]);//John
+
+    const obj = {name:"test", age:20, hi:function(){return "hello";}};
+
+    mixed.splice(2,0,obj)
+    console.table(mixed);//(3) ["test", Array(4), {name: "test", age: 20, hi: ƒ}]
+    console.log(mixed[2].hi());//hello
+
+
+
+  </script>  
+</body>
+</html>

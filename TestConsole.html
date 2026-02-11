@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Console Log Sample</title>
+</head>
+<body>
+    <h1>Open the browser console to see the output</h1>
+    <script>
+        console.log("This is a log message.");
+        console.info("This is an info message.");
+        console.warn("This is a warning message.");
+        console.error("This is an error message.");
+        console.debug("This is a debug message.");
+
+        let users = [
+          { id: 1, name: "Alice", age: 23 },
+          { id: 2, name: "Bob", age: 30 }
+        ];
+        console.table(users);
+
+        console.group("Grouped Messages");
+        console.log("Message 1");
+        console.log("Message 2");
+        console.groupEnd();
+
+        console.time("Timer");
+        for (let i = 0; i < 10000000; i++) {}
+        console.timeEnd("Timer");    
+
+        x = 5;
+        console.assert(x <= 10, "true -- this will not log");
+        console.assert(x > 10, "false -- this will log");
+
+    </script>
+</body>
+</html>
