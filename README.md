@@ -1,2 +1,2 @@
 # 3DMap
-3DMap for Pattaya
+3DMap by Cesium Tutorial
