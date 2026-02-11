@@ -1,2 +1,2 @@
-# 3DMap
+# Tutorial
 3DMap by Cesium Tutorial
