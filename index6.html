@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Tutorial 6: Draw & Save</title>
+
+    <!-- Cesium -->
+    <script src="./CesiumUnminified/Cesium.js"></script>
+    <link href="./Cesium/Widgets/widgets.css" rel="stylesheet" />
+
+    <!-- jQuery -->
+    <script src="./js/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* Input Modal Style */
+        #inputModal {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            width: 300px;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #inputModal h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #555;
+            background: #252525;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary {
+            background: #555;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #666;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        /* Toolbar override */
+        #toolbar button {
+            cursor: pointer;
+        }
+
+        #fileInput {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="cesiumContainer">
+
+        <!-- Toolbar -->
+        <div id="toolbar"
+            style="position:absolute; top:5px; left:5px; padding:10px; background:rgba(0,0,0,0.6); border-radius:8px; display:flex; flex-wrap:wrap; gap:10px; z-index:1000; max-width: 800px;">
+            <!-- Measurement Group -->
+            <div style="display:flex; gap:5px; border-right:1px solid #555; padding-right:10px;">
+                <button onclick="pickCoordinate()" class="cesium-button" title="Pick Coordinate"><i
+                        class="bi bi-geo-alt"></i> Pick</button>
+                <button onclick="measureDistance()" class="cesium-button" title="Measure Distance"><i
+                        class="bi bi-ruler"></i> Dist</button>
+                <button onclick="measureArea()" class="cesium-button" title="Measure Area"><i
+                        class="bi bi-bounding-box-circles"></i> Area</button>
+                <button onclick="clearMeasurements()" class="cesium-button" title="Clear Measurements"><i
+                        class="bi bi-eraser"></i> Clear</button>
+            </div>
+
+            <!-- Polygon Group -->
+            <div style="display:flex; gap:5px;">
+                <button onclick="startDrawing()" class="cesium-button" title="Draw Extruded Polygon"><i
+                        class="bi bi-pencil-square"></i> Draw Poly</button>
+                <button onclick="savePolygons()" class="cesium-button" title="Save Polygons"><i class="bi bi-save"></i>
+                    Save</button>
+                <button onclick="document.getElementById('fileInput').click()" class="cesium-button"
+                    title="Load Polygons"><i class="bi bi-upload"></i> Load</button>
+                <button onclick="clearAllData()" class="cesium-button" title="Clear All Data"><i
+                        class="bi bi-trash"></i> Reset</button>
+            </div>
+
+            <input type="file" id="fileInput" accept=".json" onchange="loadPolygons(this)" />
+        </div>
+
+        <!-- Message Box -->
+        <div id="Msg"
+            style="position:absolute; top:20px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.6); color:#fff; padding:8px 16px; border-radius:8px; display:none; pointer-events:none; z-index:2000;">
+        </div>
+
+        <!-- Input Modal -->
+        <div id="inputModal">
+            <h3>Polygon Details</h3>
+            <div class="form-group">
+                <label for="polyName">Name</label>
+                <input type="text" id="polyName" placeholder="e.g. Building A">
+            </div>
+            <div class="form-group">
+                <label for="polyHeight">Height (m)</label>
+                <input type="number" id="polyHeight" placeholder="e.g. 50">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="cancelInput()">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmInput()">Save</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Application -->
+    <script src="./js/script6.js"></script>
+
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/toolbar-button.css" rel="stylesheet">
+</body>
+
+</html>

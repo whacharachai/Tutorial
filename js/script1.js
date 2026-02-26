@@ -1,8 +1,7 @@
 
   import { tileset_url } from './data.js';
-  import { token } from '../key/token.js';
   
-  //let token = '';
+  let token = "<your_access_token>";
   
   Cesium.Ion.defaultAccessToken = token;
   
